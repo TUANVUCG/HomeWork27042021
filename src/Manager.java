@@ -1,8 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Manager {
 
@@ -94,7 +91,7 @@ public class Manager {
     }
 
     // Sap xep sinh vien theo diem giam dan bang Bubble sort
-    public void bubbleSortStudentList() {
+    public void bubbleSortStudentListByMark() {
         for (int i = 0; i < studentList.size() - 1; i++) {
             for (int j = (studentList.size() - 1); j > i; j--) {
                 if (studentList.get(j).getMark() > studentList.get(j - 1).getMark()) {
@@ -168,6 +165,27 @@ public class Manager {
             studentList.set(search,student);
         }
     }
+
+    // Tim sinh vien co diem cao nhat
+    public void searchStudentHaveMaxMark(){
+        bubbleSortStudentListByMark();
+        System.out.println("Sinh viên có điểm cao nhất là : ");
+        System.out.println(studentList.get(0));
+    }
+
+    // Thong ke luong sinh vien cua tung lop
+    public void statisticalAmountStudentInAClass(){
+        Map<String, Student> studentMap = new HashMap<String, Student>();
+        for(int i = 0;i<studentList.size();i++){
+            studentMap.put(studentList.get(i).getClassName(),studentList.get(i));
+        }
+       Set<String> keySet = studentMap.keySet();
+        for(String key : keySet){
+            System.out.println(key +  "    -    "+studentMap.get(key));
+        }
+    }
+
+
 }
 
 

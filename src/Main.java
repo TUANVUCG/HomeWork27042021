@@ -39,9 +39,10 @@ public class Main {
                     manager.removeStudentById(id);
                     break;
                 case "5":
-                    manager.bubbleSortStudentList();// Done
+                    manager.bubbleSortStudentListByMark();// Done
                     break;
                 case "6":
+                    manager.searchStudentHaveMaxMark();// Done
                     break;
                 case "7":
                     System.out.println("Nhập mã sinh viên cần tìm : "); // Done
@@ -49,6 +50,7 @@ public class Main {
                     manager.showStudentInfoById(id1);
                     break;
                 case "8":
+                    manager.statisticalAmountStudentInAClass();
                     break;
                 case "9":
                     manager.writeStudentInfoToFile(); // Done
