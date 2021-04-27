@@ -57,11 +57,11 @@ public class Manager {
     public List<Student> readStudentInfo() {
         FileInputStream fis = null;
         ObjectInputStream ois = null;
-        List<Student> studentListReader = null;
+//        List<Student> studentListReader = null;
         try {
             fis = new FileInputStream("Student.txt");
             ois = new ObjectInputStream(fis);
-            studentListReader = (List<Student>) ois.readObject();
+            studentList = (List<Student>) ois.readObject();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -80,7 +80,7 @@ public class Manager {
                 }
             }
         }
-        return studentListReader;
+        return studentList;
     }
 
     // Hien thi tat ca sinh vien
