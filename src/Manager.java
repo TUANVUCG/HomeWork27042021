@@ -104,11 +104,11 @@ public class Manager {
                 }
             }
         }
-        System.out.println("Danh sách sau sắp xếp");
+        System.out.println("Danh sách sắp xếp theo điểm : ");
         showAllStudentInfo();
     }
 
-    // Sap xep theo diem
+    // Sap xep theo ma sinh vien
     public void sortStudentListById() {
         for (int i = 0; i < studentList.size() - 1; i++) {
             for (int j = (studentList.size() - 1); j > i; j--) {
@@ -125,16 +125,16 @@ public class Manager {
     public int searchStudentBinary(int id) {
         sortStudentListById();
         int left = 0;
-        int right = readStudentInfo().size() - 1;
+        int right = studentList.size() - 1;
         while (left <= right) {
             int mid = (left + right) / 2;
-            if(readStudentInfo().get(mid).getId()==id){
+            if(studentList.get(mid).getId()==id){
                 return mid;
             }
-            if (id < readStudentInfo().get(mid).getId()) {
+            if (id < studentList.get(mid).getId()) {
                 left = mid + 1;
             }
-            if(id>readStudentInfo().get(mid).getId()){
+            if(id>studentList.get(mid).getId()){
                 right = mid-1;
             }
         }
@@ -158,6 +158,16 @@ public class Manager {
         showAllStudentInfo();
     }
 
+
+    // Cap nhat thong tin mot sinh vien
+    public void updateStudentInfo(int id){
+        int search = searchStudentBinary(id);
+        if(search!=-1){
+            Student student = new Student();
+            student.inputStudentInfo();
+            studentList.set(search,student);
+        }
+    }
 }
 
 

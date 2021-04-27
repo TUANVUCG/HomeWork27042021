@@ -26,13 +26,15 @@ public class Main {
                     manager.addStudent();//Done
                     break;
                 case "2":
-//                    manager.writeStudentInfoToFile();
                     manager.showAllStudentInfo();//Done
                     break;
                 case "3":
+                    System.out.print("Nhập mã sinh viên cần update : ");
+                    int idUpdate = Integer.parseInt(sc.nextLine());
+                    manager.updateStudentInfo(idUpdate);
                     break;
                 case "4":
-                    System.out.println("Nhập mã sinh viên");
+                    System.out.print("Nhập mã sinh viên cần xóa : ");//Done
                     int id = Integer.parseInt(sc.nextLine());
                     manager.removeStudentById(id);
                     break;
