@@ -80,8 +80,8 @@ public class Student implements Serializable {
     public String toString() {
         return  "Mã sinh viên : " + id +"    "+
                 "Tên : " + name + "    " +
-                "Quên quán : " + homeTown + "    " +
-                "Tên lớp : '" + className + "    " +
+                "Quê quán : " + homeTown + "    " +
+                "Tên lớp : " + className + "    " +
                 "Điểm : " + mark;
     }
 }

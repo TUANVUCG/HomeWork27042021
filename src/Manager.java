@@ -21,7 +21,7 @@ public class Manager {
                 isFind = true;
             }
         }
-        if(!isFind){
+        if (!isFind) {
             studentList.add(student);
         }
     }
@@ -88,33 +88,77 @@ public class Manager {
 
     // Hien thi tat ca sinh vien
     public void showAllStudentInfo() {
-        writeStudentInfoToFile();
-        readStudentInfo();
-        for (Student student : readStudentInfo()) {
+        for (Student student : studentList) {
             System.out.println(student);
         }
     }
 
     // Sap xep sinh vien theo diem giam dan bang Bubble sort
     public void bubbleSortStudentList() {
-        readStudentInfo();
-        for (int i = 0; i < readStudentInfo().size(); i++) {
-            for (int j = readStudentInfo().size(); j > i; j--) {
-                if (readStudentInfo().get(j).getId() > readStudentInfo().get(j - 1).getId()) {
-                    Student studentTemp = readStudentInfo().get(j);
-                    readStudentInfo().set((j), readStudentInfo().get(j - 1));
-                    readStudentInfo().set((j - 1), studentTemp);
+        for (int i = 0; i < studentList.size() - 1; i++) {
+            for (int j = (studentList.size() - 1); j > i; j--) {
+                if (studentList.get(j).getMark() > studentList.get(j - 1).getMark()) {
+                    Student studentTemp = studentList.get(j);
+                    studentList.set((j), studentList.get(j - 1));
+                    studentList.set((j - 1), studentTemp);
+                }
+            }
+        }
+        System.out.println("Danh sách sau sắp xếp");
+        showAllStudentInfo();
+    }
+
+    // Sap xep theo diem
+    public void sortStudentListById() {
+        for (int i = 0; i < studentList.size() - 1; i++) {
+            for (int j = (studentList.size() - 1); j > i; j--) {
+                if (studentList.get(j).getId() > studentList.get(j - 1).getId()) {
+                    Student studentTemp = studentList.get(j);
+                    studentList.set((j), studentList.get(j - 1));
+                    studentList.set((j - 1), studentTemp);
                 }
             }
         }
     }
 
+    //    // Tim kiem sinh vien bang nhi phan
+    public int searchStudentBinary(int id) {
+        sortStudentListById();
+        int left = 0;
+        int right = readStudentInfo().size() - 1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if(readStudentInfo().get(mid).getId()==id){
+                return mid;
+            }
+            if (id < readStudentInfo().get(mid).getId()) {
+                left = mid + 1;
+            }
+            if(id>readStudentInfo().get(mid).getId()){
+                right = mid-1;
+            }
+        }
+        System.err.println("Không tìm thấy mã sinh viên phù hợp !!!");
+        return -1;
+    }
 
-    // T
+    public void showStudentInfoById(int id){
+        if(searchStudentBinary(id)!=-1){
+            System.out.println(studentList.get(searchStudentBinary(id)));
+        }
+    }
 
 
-
-
+    // Xoa sinh vien theo ma sinh vien
+    public void removeStudentById(int id){
+        if(searchStudentBinary(id)!=-1){
+            studentList.remove(searchStudentBinary(id));
+        }
+        System.out.println("Danh sách sau sắp xếp");
+        showAllStudentInfo();
+    }
 
 }
+
+
 

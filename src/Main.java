@@ -17,32 +17,42 @@ public class Main {
             System.out.println("6. Tìm sinh viên có điểm cao nhất ");
             System.out.println("7. Tìm sinh viên theo mã sinh viên ");
             System.out.println("8. Thống kê lượng sinh viên của từng lớp ");
-            System.out.println("9. Đọc danh sách sinh viên từ file");
-            System.out.println("10. Ghi danh sách sinh viên từ file");
+            System.out.println("9. Ghi danh sách sinh viên ra file");
+            System.out.println("10. Đọc danh sách sinh viên từ file");
             System.out.println("0. Thoát chương trình ");
             choice = sc.nextLine();
             switch (choice){
                 case "1":
-                    manager.addStudent();
+                    manager.addStudent();//Done
                     break;
                 case "2":
-                    manager.showAllStudentInfo();
+//                    manager.writeStudentInfoToFile();
+                    manager.showAllStudentInfo();//Done
                     break;
                 case "3":
                     break;
                 case "4":
+                    System.out.println("Nhập mã sinh viên");
+                    int id = Integer.parseInt(sc.nextLine());
+                    manager.removeStudentById(id);
                     break;
                 case "5":
+                    manager.bubbleSortStudentList();// Done
                     break;
                 case "6":
                     break;
                 case "7":
+                    System.out.println("Nhập mã sinh viên cần tìm : "); // Done
+                    int id1 = Integer.parseInt(sc.nextLine());
+                    manager.showStudentInfoById(id1);
                     break;
                 case "8":
                     break;
                 case "9":
+                    manager.writeStudentInfoToFile(); // Done
                     break;
                 case "10":
+                    manager.readStudentInfo(); // Done
                     break;
                 case "0":
                     System.out.println("GOODBYE !!!");
