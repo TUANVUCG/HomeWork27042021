@@ -21,6 +21,7 @@ public class Manager {
         if (!isFind) {
             studentList.add(student);
         }
+        writeStudentInfoToFile();
     }
 
 
@@ -85,6 +86,7 @@ public class Manager {
 
     // Hien thi tat ca sinh vien
     public void showAllStudentInfo() {
+        readStudentInfo();
         for (Student student : studentList) {
             System.out.println(student);
         }
@@ -116,6 +118,7 @@ public class Manager {
                 }
             }
         }
+        writeStudentInfoToFile();
     }
 
     //    // Tim kiem sinh vien bang nhi phan
@@ -151,6 +154,7 @@ public class Manager {
         if(searchStudentBinary(id)!=-1){
             studentList.remove(searchStudentBinary(id));
         }
+        writeStudentInfoToFile();
         System.out.println("Danh sách sau sắp xếp");
         showAllStudentInfo();
     }
@@ -164,6 +168,9 @@ public class Manager {
             student.inputStudentInfo();
             studentList.set(search,student);
         }
+        writeStudentInfoToFile();
+        System.out.println("Danh sachs sau khi update : ");
+        showAllStudentInfo();
     }
 
     // Tim sinh vien co diem cao nhat
@@ -175,16 +182,19 @@ public class Manager {
 
     // Thong ke luong sinh vien cua tung lop
     public void statisticalAmountStudentInAClass(){
-        Map<String, Student> studentMap = new HashMap<String, Student>();
-        for(int i = 0;i<studentList.size();i++){
-            studentMap.put(studentList.get(i).getClassName(),studentList.get(i));
+        Map<String,List<Student>> studentMap = new HashMap<>();
+        List<Student> studentsInMap = new ArrayList<>();
+        for(int i = 0; i <studentList.size();i++){
+            if(studentMap.containsKey(studentList.get(i).getClassName())){
+                studentsInMap.add(studentList.get(i));
+                studentMap.replace(studentList.get(i).getClassName(),studentsInMap);
+            }else{
+                studentsInMap.add(studentList.get(i));
+                studentMap.put(studentList.get(i).getClassName(),studentsInMap);
+            }
         }
-       Set<String> keySet = studentMap.keySet();
-        for(String key : keySet){
-            System.out.println(key +  "    -    "+studentMap.get(key));
-        }
+        System.out.println(studentMap);
     }
-
 
 }
 
